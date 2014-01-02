@@ -4,6 +4,21 @@
 
 fluent plugin mysql prepared statement query
 
+## Installation
+
+### td-agent(Linux)
+
+    /usr/lib64/fluent/ruby/bin/fluent-gem install fluent-plugin-mysql-prepared-statement
+
+### td-agent(Mac)
+
+    sudo /usr/local/Cellar/td-agent/1.1.XX/bin/fluent-gem install fluent-plugin-mysql-prepared-statement
+
+### fluentd only
+
+    gem install fluent-plugin-mysql-prepared-statement
+
+
 ## Parameters
 
 param|value
