@@ -1,6 +1,6 @@
-[![Build Status](https://secure.travis-ci.org/toyama0919/fluent-plugin-mysql-prepared-statement.png?branch=master)](http://travis-ci.org/toyama0919/fluent-plugin-mysql-prepared-statement)
 
-# fluent-plugin-mysql-prepared-statement
+# fluent-plugin-mysql-prepared-statement [![Build Status](https://secure.travis-ci.org/toyama0919/fluent-plugin-mysql-prepared-statement.png?branch=master)](http://travis-ci.org/toyama0919/fluent-plugin-mysql-prepared-statement)
+
 
 fluent plugin mysql prepared statement query
 
@@ -32,7 +32,7 @@ password|password(default: blank)
 key_names|prepared statement value(require)
 sql|running sql , prepared statement query(require)
 
-## Configuration Example
+## Configuration Example(select)
 
 ```
 <match mysql.input>
@@ -63,11 +63,44 @@ mysql.output {"id":122,"user_name":"toyama","created_at":"2014-01-01 19:10:27 +0
 running query =>[select * from users where id = 1 and user_name = 'toyama']
 
 
+## Configuration Example(insert)
+
+```
+<match mysql.input>
+  type mysql_prepared_statement
+  output_tag mysql.output
+  host localhost
+  database test_app_development
+  username root
+  password hogehoge
+  key_names user_name
+  sql INSERT INTO users ( user_name,created_at,updated_at) VALUES (?,now(),now())
+  flush_interval 10s
+</match>
+```
+
+Assume following input is coming:
+
+```js
+mysql.input {"id":"1", "user_name":"toyama"}
+```
+
+no output by insert or update
+
+running query =>[INSERT INTO users ( user_name,created_at,updated_at) VALUES ('toyama',now(),now())]
+
+
+
 ## spec
 
 ```
+bundle install
 rake test
 ```
+
+## todo
+
+bulk insert option
 
 
 ## Contributing
