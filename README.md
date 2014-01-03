@@ -98,10 +98,6 @@ bundle install
 rake test
 ```
 
-## todo
-
-bulk insert option
-
 
 ## Contributing
 
