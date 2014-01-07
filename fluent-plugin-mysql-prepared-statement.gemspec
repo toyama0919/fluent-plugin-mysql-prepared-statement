@@ -2,7 +2,7 @@
 Gem::Specification.new do |gem|
   gem.name          = "fluent-plugin-mysql-prepared-statement"
   gem.version       = "0.0.1"
-  gem.authors       = ["Toyama Hiroshi"]
+  gem.authors       = ["Hiroshi Toyama"]
   gem.email         = ["toyama0919@gmail.com"]
   gem.description   = %q{fluent plugin mysql prepared statement}
   gem.summary       = %q{fluent plugin mysql prepared statement}
