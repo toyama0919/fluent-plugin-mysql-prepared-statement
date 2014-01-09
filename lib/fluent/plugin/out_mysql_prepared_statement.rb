@@ -44,7 +44,6 @@ module Fluent
     end
 
     def start
-      @handler = client
       super
     end
 
@@ -68,6 +67,7 @@ module Fluent
     end
 
     def write(chunk)
+      @handler = client
       $log.info "adding mysql_query job: "
       chunk.msgpack_each { |tag, time, data|
         results = get_exec_result(data)
