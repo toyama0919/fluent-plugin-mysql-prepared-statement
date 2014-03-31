@@ -75,6 +75,7 @@ module Fluent
           Fluent::Engine.emit(@output_tag, Fluent::Engine.now, result)
         }
       }
+      @handler.close
     end
 
     def get_exec_result(data)
