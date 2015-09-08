@@ -72,7 +72,7 @@ module Fluent
       chunk.msgpack_each { |tag, time, data|
         results = get_exec_result(data)
         results.each{|result|
-          Fluent::Engine.emit(@output_tag, Fluent::Engine.now, result)
+          router.emit(@output_tag, Fluent::Engine.now, result)
         }
       }
       @handler.close
