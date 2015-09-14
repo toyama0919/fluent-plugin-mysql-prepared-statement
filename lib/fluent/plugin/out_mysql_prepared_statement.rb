@@ -5,7 +5,7 @@ module Fluent
 
     # Define `router` method of v0.12 to support v0.10.57 or earlier
     unless method_defined?(:router)
-      define_method("router") { Engine }
+      define_method("router") { Fluent::Engine }
     end
 
     config_param :host, :string, :default => "127.0.0.1"
