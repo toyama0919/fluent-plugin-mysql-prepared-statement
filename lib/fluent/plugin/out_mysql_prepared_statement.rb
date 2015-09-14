@@ -3,6 +3,11 @@ module Fluent
   class Fluent::MysqlPreparedStatementOutput < Fluent::BufferedOutput
     Fluent::Plugin.register_output('mysql_prepared_statement', self)
 
+    # Define `router` method of v0.12 to support v0.10.57 or earlier
+    unless method_defined?(:router)
+      define_method("router") { Engine }
+    end
+
     config_param :host, :string, :default => "127.0.0.1"
     config_param :output_tag, :string
     config_param :port, :integer, :default => 3306
@@ -72,7 +77,7 @@ module Fluent
       chunk.msgpack_each { |tag, time, data|
         results = get_exec_result(data)
         results.each{|result|
-          Fluent::Engine.emit(@output_tag, Fluent::Engine.now, result)
+          router.emit(@output_tag, Fluent::Engine.now, result)
         }
       }
       @handler.close
